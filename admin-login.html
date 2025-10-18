@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="favicon_io (1)/favicon-32x32.png">
+  <title>Admin Login</title>
+  <style>
+       :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --primary-light: #818cf8;
+      --secondary: #ec4899;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --dark: #1f2937;
+      --light: #f9fafb;
+      --gray: #6b7280;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #f0f9ff 0%, #f3e8ff 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 0 !important;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 80px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: white;
+      letter-spacing: 1px;
+      animation: slideInLeft 0.6s ease;
+    }
+
+    .logo:hover {
+      text-shadow: 0 0 20px rgba(255,255,255,0.5);
+      transform: scale(1.05);
+      transition: 0.3s;
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    nav {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      position: relative;
+      transition: 0.3s;
+      padding: 8px 0;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: white;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 2px;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+    }
+
+    .nav-toggle span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(10px, 10px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(8px, -8px);
+    }
+    /* --- Admin Login Page Specific Styling --- */
+    body {
+      background: linear-gradient(135deg, #f0f5ff 0%, #e3eaf2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    section {
+      max-width: 450px;
+      width: 100%;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 12px 48px rgba(0, 74, 173, 0.2);
+      padding: 50px 40px;
+      animation: slideUp 0.5s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .login-icon {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: #004aad;
+      font-size: 2rem;
+      margin: 0 0 10px 0;
+      font-weight: 700;
+    }
+
+    .login-subtitle {
+      color: #666;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: #333;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      box-sizing: border-box;
+      background: #f8f9fa;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="password"]::placeholder {
+      color: #bbb;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #004aad;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(0, 74, 173, 0.1);
+    }
+
+    .input-group {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon {
+      position: absolute;
+      right: 15px;
+      font-size: 1.2rem;
+      color: #999;
+      pointer-events: none;
+    }
+
+    .form-group input {
+      padding-right: 45px;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #004aad 0%, #0366d6 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0, 74, 173, 0.2);
+      letter-spacing: 0.5px;
+      margin-top: 10px;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 74, 173, 0.3);
+    }
+
+    .login-btn:active {
+      transform: translateY(0);
+    }
+
+    .security-info {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border-left: 4px solid #f59e0b;
+      font-size: 0.85rem;
+      color: #92400e;
+      line-height: 1.6;
+    }
+
+    .security-info strong {
+      color: #b45309;
+    }
+
+    .error-message {
+      display: none;
+      background: #f8d7da;
+      color: #721c24;
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border-left: 4px solid #e63946;
+      text-align: center;
+      font-weight: 600;
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 25px 0;
+      color: #ccc;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e0e0e0;
+    }
+
+    .divider-text {
+      padding: 0 10px;
+      color: #999;
+      font-size: 0.85rem;
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .back-link a {
+      color: #004aad;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .back-link a:hover {
+      text-decoration: underline;
+      color: #0366d6;
+    }
+
+    footer {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 80px;
+      animation: slideUp 0.8s ease;
+    }
+
+    footer p {
+      margin: 8px 0;
+      font-weight: 500;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        padding: 15px 20px;
+      }
+
+      .logo {
+        font-size: 1.4rem;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+     nav {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    z-index: 999;
+  }
+
+  nav.active {
+    max-height: 200px;
+  }
+
+  nav a {
+    padding: 12px 20px;
+    text-align: left;
+    border-bottom: none;
+    display: block;
+    font-size: 0.9rem;
+  }
+      nav a::after {
+        display: none;
+      }
+
+      nav a:hover {
+        background: rgba(255,255,255,0.1);
+      }
+
+      main {
+        padding: 20px 10px;
+      }
+
+      section {
+        padding: 40px 25px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .login-icon {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <a href="../index.html" class="logo">
+        🎉 AKGI Freshers 2025
+      </a>
+      <nav id="navbar">
+        <a href="../index.html">Home</a>
+        <a href="agenda.html">Agenda</a>
+        <a href="fresher-registration.html">Register</a>
+        <a href="admin-login.html">Admin</a>
+      </nav>
+      <div class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="login-header">
+        <div class="login-icon">🔐</div>
+        <h1>Admin Login</h1>
+        <p class="login-subtitle">Access the admin panel to manage registrations</p>
+      </div>
+
+      <div class="security-info">
+        <strong>🔒 Secure Access:</strong> Only authorized administrators can access this panel. Please use your credentials carefully.
+      </div>
+
+      <div class="error-message" id="errorMsg">
+        ❌ Invalid username or password
+      </div>
+
+      <form id="adminForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-group">
+            <input 
+              type="text" 
+              id="username" 
+              name="username" 
+              placeholder="Enter your username"
+              autocomplete="off"
+              required
+            >
+            <span class="input-icon">👤</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-group">
+            <input 
+              type="password" 
+              id="password" 
+              name="password" 
+              placeholder="Enter your password"
+              autocomplete="off"
+              required
+            >
+            <span class="input-icon">🔑</span>
+          </div>
+        </div>
+
+        <button type="submit" class="login-btn">🔓 Login</button>
+      </form>
+
+      <div class="divider">
+        <span class="divider-text">or</span>
+      </div>
+
+      <div class="back-link">
+        <a href="../index.html">← Back to Home</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 AKGI Freshers Party. All rights reserved.</p>
+    <p>Made with ❤️ for the AKGI Community</p>
+    <p>| By Biswaranjan Sahoo |</p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const navbar = document.getElementById('navbar');
+
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navbar.classList.toggle('active');
+    });
+
+    // Close menu when link is clicked
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navbar.classList.remove('active');
+      });
+    });
+
+    // Admin login form
+    document.getElementById('adminForm').onsubmit = function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorMsg = document.getElementById('errorMsg');
+
+ if ((username === 'biswaranjan2005' && password === '9337718870') || 
+    (username === 'balaram2006' && password === '7377321480')) {
+    localStorage.setItem('adminLoggedIn', 'true');
+    errorMsg.style.display = 'none';
+    this.style.opacity = '0.5';
+    setTimeout(() => {
+        window.location.href = 'admin.html';
+    }, 500);
+      } else {
+        errorMsg.style.display = 'block';
+        document.getElementById('password').value = '';
+        document.getElementById('password').focus();
+      }
+    };
+
+    // Clear error message when user starts typing
+    document.getElementById('username').addEventListener('input', () => {
+      document.getElementById('errorMsg').style.display = 'none';
+    });
+
+    document.getElementById('password').addEventListener('input', () => {
+      document.getElementById('errorMsg').style.display = 'none';
+    });
+  </script>
+</body>
+
+</html>

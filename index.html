@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="favicon_io (1)/favicon.ico">
+  <title>AKGI Freshers Party 2025</title>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --primary-light: #818cf8;
+      --secondary: #ec4899;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --dark: #1f2937;
+      --light: #f9fafb;
+      --gray: #6b7280;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #f0f9ff 0%, #f3e8ff 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 0 !important;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 80px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: white;
+      letter-spacing: 1px;
+      animation: slideInLeft 0.6s ease;
+    }
+
+    .logo:hover {
+      text-shadow: 0 0 20px rgba(255,255,255,0.5);
+      transform: scale(1.05);
+      transition: 0.3s;
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    nav {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      position: relative;
+      transition: 0.3s;
+      padding: 8px 0;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: white;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 2px;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+    }
+
+    .nav-toggle span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(10px, 10px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(8px, -8px);
+    }
+
+
+    section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+      color: white;
+      padding: 80px 40px;
+      text-align: center;
+      margin-bottom: 60px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: moveBackground 20s linear infinite;
+    }
+
+    @keyframes moveBackground {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: slideUp 0.8s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero h2 {
+      font-size: 3.5rem;
+      margin: 0 0 20px 0;
+      color: white;
+      border: none;
+      font-weight: 800;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      animation: bounce 0.6s ease;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin: 15px 0;
+      opacity: 0.95;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+
+    .cta-btn {
+      padding: 16px 40px;
+      font-size: 1.1rem;
+      background: white;
+      color: var(--primary);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.2);
+      transition: left 0.3s ease;
+    }
+
+    .cta-btn:hover::before {
+      left: 100%;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    }
+
+    .cta-btn.primary {
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+      color: white;
+    }
+
+    .event-details {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+      padding: 40px;
+      border-radius: 15px;
+      margin: 60px 0;
+      border: 2px solid rgba(99, 102, 241, 0.2);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      animation: slideUp 0.8s ease 0.2s both;
+    }
+
+    .event-details p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    .highlight {
+      color: var(--secondary);
+      font-weight: 700;
+    }
+
+    section > h2 {
+      color: var(--primary);
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      text-align: center;
+      position: relative;
+      animation: fadeIn 0.8s ease;
+    }
+
+    section > h2::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+      border-radius: 2px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin: 60px 0;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      border-left: 5px solid var(--primary);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: scaleIn 0.6s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(99, 102, 241, 0.2);
+      border-left-color: var(--secondary);
+    }
+
+    .feature-card h3 {
+      color: var(--primary);
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    .feature-card p {
+      color: var(--gray);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .info-box {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+      padding: 30px;
+      border-radius: 15px;
+      margin: 40px 0;
+      border-left: 5px solid var(--success);
+      animation: slideUp 0.8s ease;
+    }
+
+    .info-box h2 {
+      color: var(--primary);
+      margin-top: 0;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    .info-box p {
+      color: var(--dark);
+      font-weight: 500;
+      line-height: 1.8;
+    }
+
+    .info-box ul {
+      list-style: none;
+      line-height: 2;
+      color: var(--dark);
+    }
+
+    .info-box li {
+      font-weight: 500;
+      animation: slideInLeft 0.6s ease;
+    }
+
+    .info-box li:nth-child(2) { animation-delay: 0.1s; }
+    .info-box li:nth-child(3) { animation-delay: 0.2s; }
+    .info-box li:nth-child(4) { animation-delay: 0.3s; }
+    .info-box li:nth-child(5) { animation-delay: 0.4s; }
+
+    /* --- Footer --- */
+    footer {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 80px;
+      animation: slideUp 0.8s ease;
+    }
+
+    footer p {
+      margin: 8px 0;
+      font-weight: 500;
+    }
+
+    /* --- Mobile Responsive --- */
+    @media (max-width: 1024px) {
+      .hero {
+        padding: 60px 30px;
+      }
+
+      .hero h2 {
+        font-size: 2.5rem;
+      }
+
+      .event-details {
+        gap: 20px;
+        padding: 30px;
+      }
+
+      .features {
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-content {
+        height: auto;
+        padding: 15px 20px;
+        gap: 15px;
+      }
+
+      .logo {
+        font-size: 1.4rem;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+    nav {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    z-index: 999;
+  }
+
+  nav.active {
+    max-height: 200px;
+  }
+
+  nav a {
+    padding: 12px 20px;
+    text-align: left;
+    border-bottom: none;
+    display: block;
+    font-size: 0.9rem;
+  }
+
+      nav a::after {
+        display: none;
+      }
+
+      nav a:hover {
+        background: rgba(255,255,255,0.1);
+      }
+
+      section {
+        padding: 20px 15px;
+      }
+
+      .hero {
+        padding: 50px 20px;
+        margin-bottom: 40px;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .cta-buttons {
+        gap: 15px;
+        flex-direction: column;
+      }
+
+      .cta-btn {
+        width: 100%;
+        padding: 14px 30px;
+      }
+
+      section > h2 {
+        font-size: 1.8rem;
+      }
+
+      .event-details {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 20px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .feature-card {
+        padding: 20px;
+      }
+
+      .feature-card h3 {
+        font-size: 1.2rem;
+      }
+
+      .info-box {
+        padding: 20px;
+      }
+
+      .info-box h2 {
+        font-size: 1.4rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h2 {
+        font-size: 1.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      section > h2 {
+        font-size: 1.5rem;
+      }
+
+      .event-details p {
+        font-size: 0.95rem;
+      }
+
+      .cta-btn {
+        font-size: 1rem;
+        padding: 12px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <a href="index.html" class="logo">
+        🎉 AKGI Freshers
+      </a>
+      <nav id="navbar">
+        <a href="index.html">Home</a>
+        <a href="pages/agenda.html">Agenda</a>
+        <a href="pages/fresher-registration.html">Register</a>
+        <a href="pages/admin-login.html">Admin</a>
+      </nav>
+      <div class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="hero">
+      <div class="hero-content">
+        <h2>🎉 Welcome Freshers! 🎉</h2>
+        <p>Join us for an unforgettable celebration</p>
+        <p>Making memories, building friendships, and welcoming you to the AKGI family!</p>
+        <div class="cta-buttons">
+          <a href="pages/fresher-registration.html" class="cta-btn primary">Register Now</a>
+          <a href="pages/agenda.html" class="cta-btn">View Agenda</a>
+        </div>
+      </div>
+    </div>
+
+    <h2>📅 Event Overview</h2>
+    <div class="event-details">
+      <p><strong>📌 Date:</strong> <span class="highlight">November 1, 2025</span></p>
+      <p><strong>⏰ Time:</strong> <span class="highlight">10:00 AM - 6:00 PM</span></p>
+      <p><strong>📍 Venue:</strong> <span class="highlight">AKGI Seminar Hall</span></p>
+      <p><strong>👥 Attendees:</strong> <span class="highlight">500+ Students</span></p>
+    </div>
+
+    <h2>✨ Why Attend?</h2>
+    <div class="features">
+      <div class="feature-card">
+        <h3>🎭 Cultural Performances</h3>
+        <p>Enjoy amazing dance, music, and skit performances by talented senior students that will keep you entertained throughout the day.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🏆 Contests & Prizes</h3>
+        <p>Participate in Mr. & Ms. Fresher contest with exciting rewards, recognition, and amazing prizes for winners.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🤝 Networking</h3>
+        <p>Meet new friends, connect with seniors, build lasting friendships, and expand your professional network.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🍽️ Free Food & Entertainment</h3>
+        <p>Enjoy delicious lunch and dinner with unlimited fun activities and refreshments throughout the event.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>🎮 Games & Activities</h3>
+        <p>Participate in interactive games, fun-filled activities, and exciting challenges with amazing prizes.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>📜 Recognition</h3>
+        <p>Get officially welcomed to the AKGI family with certificates, recognition, and memorable moments.</p>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h2>📝 Registration Details</h2>
+      <p>Registration is <strong>FREE</strong> and open for all freshers. Simply fill out the registration form with your basic details:</p>
+      <ul>
+        <li>✅ Full Name</li>
+        <li>✅ Email Address</li>
+        <li>✅ Phone Number</li>
+        <li>✅ Department</li>
+        <li>✅ Gender</li>
+      </ul>
+      <p>Once registered, you'll receive a confirmation and be added to our guest list!</p>
+    </div>
+
+    <div class="cta-buttons" style="margin-top: 60px; margin-bottom: 40px;">
+      <a href="pages/fresher-registration.html" class="cta-btn primary">Register Now 🎉</a>
+      <a href="pages/agenda.html" class="cta-btn">View Full Agenda 📅</a>
+      <a href="pages/admin-login.html" class="cta-btn">Admin Login 🔐</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 AKGI Freshers Party. All rights reserved.</p>
+    <p>Made with ❤️ for the AKGI Community</p>
+    <p>| By Biswaranjan Sahoo |</p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const navbar = document.getElementById('navbar');
+
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navbar.classList.toggle('active');
+    });
+
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navbar.classList.remove('active');
+      });
+    });
+
+    window.addEventListener('load', () => {
+      document.body.style.opacity = '1';
+    });
+  </script>
+</body>
+
+</html>
